@@ -4,10 +4,10 @@ TRAINER_PATH = "./trainer"
 PREDICTOR_PATH = "./predictor"
 
 train:
-	$(CC) $(TRAINER_PATH)/trainer.py
+	@$(CC) $(TRAINER_PATH)/trainer.py
 
 predict:
-	$(CC) $(PREDICTOR_PATH)/predictor.py
+	@$(CC) $(PREDICTOR_PATH)/predictor.py
 
 clean:
 	rm -rf $(TRAINER_PATH)/__pycache__
