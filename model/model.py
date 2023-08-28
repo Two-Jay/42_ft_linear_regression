@@ -6,7 +6,7 @@ def get_theta():
             return [float(v.strip('')) for v in file.read().split(',')]
     except:
         print('Error : Please train the model first')
-        exit(1)
+        exit()
 
 class Linear_Regression:
     @staticmethod
