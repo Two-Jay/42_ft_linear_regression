@@ -1,6 +1,4 @@
 import csv
-
-
 class Car_Data():
     def __init__(self, mileages: list, prices: list):
         self.mileages = mileages
