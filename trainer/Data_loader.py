@@ -1,17 +1,18 @@
 import csv
 
+
 class Car_Data():
-    def __init__(self, source : dict):
-        self.km = source['km']
-        self.price = source['price']
+    def __init__(self, mileages: list, prices: list):
+        self.mileages = mileages
+        self.prices = prices
+
+    def column_name(self):
+        return ['km', 'price']
 
 class Load_Code():
     @staticmethod
-    def load(file_path : str) -> Car_Data:
+    def load(file_path: str) -> Car_Data:
         # read_csv
-        dict = {}
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
-            dict['km'] = [int(row['km']) for row in reader]
-            dict['price'] = [int(row['price']) for row in reader]
-        return Car_Data(dict)
+            return Car_Data([float(row['km']) for row in reader], [float(row['price']) for row in reader])
