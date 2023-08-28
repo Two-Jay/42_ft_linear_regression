@@ -15,11 +15,8 @@ class Linear_Regression:
 
     @staticmethod
     def predict(input_x_data):
-        theta0, theta1 = get_theta()
-        if theta0 == 0 and theta1 == 0:
-            print('Error : Please train the model first')
-            exit()
-        return theta0 + (theta1 * input_x_data)
+        theta = get_theta()
+        return theta[0] + (theta[1] * input_x_data) if all(i == 0 for i in theta) == False else None
 
     @staticmethod
     def evaluate(x_data, y_data):
