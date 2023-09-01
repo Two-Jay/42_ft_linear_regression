@@ -32,4 +32,6 @@ class Load_options_Code():
             return {
                 'epochs': int(reader['epochs']) if reader['epochs'] != 'None' else 100,
                 'learning_rate': float(reader['learning_rate']) if reader['learning_rate'] != 'None' else 0.001,
+                'batch_size': int(reader['batch_size']) if reader['batch_size'] != 'None' else 1,
+                'visualize': bool(reader['visualize']) if reader['visualize'] != 'None' else False,
             }

@@ -12,9 +12,9 @@ class Linear_Regression:
         pass
 
     @staticmethod
-    def fit(x_data, y_data, learning_rate, epochs):
+    def fit(x_data, y_data, learning_rate, epochs, visualize = False, batch_size = 1):
         theta = get_theta()
-        result = gradient_descent(x_data, y_data, epochs, learning_rate, theta)
+        result = gradient_descent(x_data, y_data, epochs, learning_rate, theta, visualize, batch_size)
         with open(f"{os.getcwd()}/resources/theta.csv", 'w') as file:
             file.write(f"{result[0]},{result[1]}")
 

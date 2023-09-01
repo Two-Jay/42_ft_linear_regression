@@ -19,4 +19,6 @@ clean:
 untrain:
 	rm -rf $(RESOURCES_PATH)/theta.csv
 
+fclean: clean untrain
+
 .PHONY: train predict clean

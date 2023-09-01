@@ -8,7 +8,7 @@ def main():
     d = Load_Code.load('./resources/data.csv')
     model = Linear_Regression()
     options = Load_options_Code.load()
-    model.fit(d.mileages, d.prices, options['learning_rate'], options['epochs'])
+    model.fit(d.mileages, d.prices, options['learning_rate'], options['epochs'], options['visualize'], options['batch_size'])
 
 if __name__ == '__main__':
     main()

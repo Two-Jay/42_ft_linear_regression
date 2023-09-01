@@ -1,4 +1,9 @@
 {
-    "epochs" : 1000000,
-    "learning_rate" : 0.00000000002
+    "epochs" : 10000000000,
+    "learning_rate" : 0.00000000013235442,
+    "batch_size" : 100000,
+    "visualize" : "True",
+    "theta" : {
+        "accuracy" : 0.00001
+    }
 }
