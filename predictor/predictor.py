@@ -19,8 +19,10 @@ def main():
     input_mileage = get_input_mileage()
     prediction = Linear_Regression.predict(input_mileage)
     if prediction != None:
-        print(f'Estimated price: {prediction}')
-        Linear_Regression.add_to_dataset(input_mileage, prediction)
+        prediction = int(prediction)
+        mileage = int(input_mileage)
+        print(f'Estimated price: {prediction} | Mileage: {mileage}')
+        Linear_Regression.add_to_dataset(mileage, prediction)
     else:
         print(err_message['model_not_trained'])
 
