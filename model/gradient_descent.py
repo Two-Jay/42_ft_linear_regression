@@ -1,17 +1,28 @@
-def estimatePrice(mileage, theta0, theta1):
-    return theta0 + (theta1 * mileage)
+def estimatePrice(mileage, theta):
+    return theta[0] + (theta[1] * mileage)
 
-def gradient_descent(x_axis, y_axis, m : int, epochs : int = 100, learning_rates : float = 0.001, theta = [0, 0]):
+def update_theta(x_axis, y_axis, m, theta, learning_rates):
+    theta0_sum = 0
+    theta1_sum = 0
+    for m in range(m):
+        diff = estimatePrice(x_axis[0], theta) - y_axis[0]
+        theta0_sum += diff
+        theta1_sum += diff * x_axis[0]
+    theta[0] = learning_rates * ((1 / m) * theta0_sum)
+    theta[1] = learning_rates * ((1 / m) * theta1_sum)
+    return theta
+
+
+def gradient_descent(x_axis, y_axis, epochs : int = 100, learning_rates : float = 0.001, theta = [0, 0]):
     try:
         assert len(x_axis) == len(y_axis)
+        tmp_theta = theta
+        m = len(x_axis)
         for epoch in range(epochs):
-            dir = 1 / m
-            limit_range = range(m)
-            tmp_theta0 = learning_rates * dir * sum([estimatePrice(x_axis[i], theta[0], theta[1]) - y_axis[i] for i in limit_range])
-            tmp_theta1 = learning_rates * dir * sum([(estimatePrice(x_axis[i], theta[0], theta[1]) - y_axis[i]) * x_axis[i] for i in limit_range])
-            theta = [tmp_theta0, tmp_theta1]
-            print(f"Epoch {epoch + 1} : theta0 = {theta[0]}, theta1 = {theta[1]}")
-        return theta
+            tmp_theta = update_theta(x_axis, y_axis, m, tmp_theta, learning_rates)
+            if epoch % 50 == 0:
+                print(f"Epoch {epoch + 1}/{epochs} - theta0: {tmp_theta[0]} - theta1: {tmp_theta[1]} | learning_rates: {learning_rates}")
+        return tmp_theta
     except:
         print("Error: Invalid input.")
         exit(1)

@@ -14,9 +14,9 @@ class Linear_Regression:
     @staticmethod
     def fit(x_data, y_data, learning_rate, epochs):
         theta = get_theta()
-        result = gradient_descent(x_data, y_data, len(x_data), epochs, learning_rate, theta)
+        result = gradient_descent(x_data, y_data, epochs, learning_rate, theta)
         with open(f"{os.getcwd()}/resources/theta.csv", 'w') as file:
-            file.write(f"{theta[0]},{theta[1]}")
+            file.write(f"{result[0]},{result[1]}")
 
     @staticmethod
     def set_arguments(epochs = 100, learning_rate = 0.001):
@@ -31,6 +31,11 @@ class Linear_Regression:
     def add_to_dataset(input_mileage, predicted_price):
         with open(f"{os.getcwd()}/resources/data.csv", 'a') as file:
             file.write(f"{input_mileage},{predicted_price}\n")
+
+    @staticmethod
+    def save_theta(theta0, theta1):
+        with open(f"{os.getcwd()}/resources/theta.csv", 'w') as file:
+            file.write(f"{theta0},{theta1}")
 
     @staticmethod
     def evaluate(x_data, y_data):

@@ -2,6 +2,7 @@ CC = python3
 
 TRAINER_PATH = "./trainer"
 PREDICTOR_PATH = "./predictor"
+RESOURCES_PATH = "./resources"
 MODEL_PATH = "./model"
 
 train:
@@ -14,5 +15,8 @@ clean:
 	rm -rf $(TRAINER_PATH)/__pycache__
 	rm -rf $(PREDICTOR_PATH)/__pycache__
 	rm -rf $(MODEL_PATH)/__pycache__
+
+untrain:
+	rm -rf $(RESOURCES_PATH)/theta.csv
 
 .PHONY: train predict clean

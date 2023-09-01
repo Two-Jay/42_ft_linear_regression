@@ -16,11 +16,16 @@ class Load_Code():
         # read_csv
         with open(file_path, 'r') as file:
             reader = csv.DictReader(file)
-            return Car_Data([float(row['km']) for row in reader], [float(row['price']) for row in reader])
+            mileages = []
+            prices = []
+            for row in reader:
+                mileages.append(float(row['km']))
+                prices.append(float(row['price']))
+            return Car_Data(mileages, prices)
 
 class Load_options_Code():
     @staticmethod
-    def load(file_path: str = f"{os.getcwd()}/resources/options.json") -> Car_Data:
+    def load(file_path: str = f"{os.getcwd()}/resources/options.json") -> dict:
         # read_csv
         with open(file_path, 'r') as file:
             reader = json.load(file)
