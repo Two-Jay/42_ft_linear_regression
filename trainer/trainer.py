@@ -7,7 +7,7 @@ from Data_loader import Load_Code
 def main():
     d = Load_Code.load('./resources/data.csv')
     model = Linear_Regression()
-    model.fit(d.mileages, d.prices)
+    model.fit(d.mileages, d.prices, 0.001, 100)
 
 if __name__ == '__main__':
     main()
