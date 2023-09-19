@@ -1,5 +1,30 @@
 import os
 from gradient_descent import gradient_descent
+import numpy as np
+
+
+class Hyperparameters:
+    def __init__(self, learning_rate, epochs, visualize, batch_size):
+        self.learning_rate = learning_rate
+        self.epochs = epochs
+        self.visualize = visualize
+        self.batch_size = batch_size
+
+class TrainData:
+    def __init__(self, x, y):
+        assert len(x) == len(y)
+        self.x = x if type(x) == np.ndarray else np.array(x)
+        self.y = y if type(y) == np.ndarray else np.array(y)
+
+    def __len__(self):
+        return len(self.x)
+    
+    def __getitem__(self, index):
+        return self.x[index], self.y[index]
+    
+    def __iter__(self):
+        for i in range(len(self)):
+            yield self[i]
 
 def get_theta():
     try:
@@ -7,14 +32,15 @@ def get_theta():
             return [float(v.strip('')) for v in file.read().split(',')]
     except:
         return [0, 0]
+
 class Linear_Regression:
     def __init__(options):
         pass
 
     @staticmethod
-    def fit(x_data, y_data, learning_rate, epochs, visualize = False, batch_size = 1):
+    def fit(data : Data, hyperparameters : Hyperparameters):
         theta = get_theta()
-        result = gradient_descent(x_data, y_data, epochs, learning_rate, theta, visualize, batch_size)
+        result = gradient_descent()
         with open(f"{os.getcwd()}/resources/theta.csv", 'w') as file:
             file.write(f"{result[0]},{result[1]}")
 
