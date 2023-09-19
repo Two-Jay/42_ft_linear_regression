@@ -10,11 +10,24 @@ class Hyperparameters:
         self.visualize = visualize
         self.batch_size = batch_size
 
-class TrainData:
-    def __init__(self, x, y):
+class BatchManager:
+    @staticmethod
+    def make(data : np.ndarray, batch_size : int):
+        return [data[i:i+batch_size] for i in range(0, len(data), batch_size)]
+    
+    @staticmethod
+    def make_batches(data : np.ndarray, batch_size : int):
+        return [BatchManager.make(data[i], batch_size) for i in range(0, len(data), batch_size)]
+
+class Data:
+    def __init__(self, x, y, batch_size = None):
         assert len(x) == len(y)
-        self.x = x if type(x) == np.ndarray else np.array(x)
-        self.y = y if type(y) == np.ndarray else np.array(y)
+        if batch_size is None:
+            self.x = x
+            self.y = y
+        else:
+            self.x = BatchManager.make_batches(x, batch_size)
+            self.y = BatchManager.make_batches(y, batch_size)
 
     def __len__(self):
         return len(self.x)
