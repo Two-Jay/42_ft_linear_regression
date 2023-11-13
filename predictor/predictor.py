@@ -1,7 +1,7 @@
 import sys
 import os
-sys.path.insert(0, f'{os.getcwd()}/model')
-from model import Linear_Regression
+sys.path.append(f"{os.getcwd()}/model")
+from model import LinearRegression
 
 err_message = {
     'invalid_input': 'Invalid input. Please try again.',
@@ -17,12 +17,11 @@ def get_input_mileage() -> float:
 
 def main():
     input_mileage = get_input_mileage()
-    prediction = Linear_Regression.predict(input_mileage)
+    prediction = LinearRegression.predict(input_mileage)
     if prediction != None:
         prediction = int(prediction)
         mileage = int(input_mileage)
         print(f'Estimated price: {prediction} | Mileage: {mileage}')
-        Linear_Regression.add_to_dataset(mileage, prediction)
     else:
         print(err_message['model_not_trained'])
 

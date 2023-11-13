@@ -1,1 +1,2 @@
-from model import Linear_Regression
+from model import LinearRegression
+from Scaling import MinMaxScaler

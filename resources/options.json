@@ -1,10 +1,12 @@
 {
-    "epochs" : 10000000000,
-    "learning_rate" : 0.000032,
-    "learning_rate_save" : 0.00000000013235442,
-    "batch_size" : 100000,
-    "visualize" : "True",
-    "theta" : {
-        "accuracy" : 0.00001
+    "epochs" : 500,
+    "learning_rate" : 0.1,
+    "verbose" : {
+        "is_verbose" : "True",
+        "precision" : 2
+    },
+    "data_split" : {
+        "test" : 0.2,
+        "validation" : 0.0
     }
 }
